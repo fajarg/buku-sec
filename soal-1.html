@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Informasi Buku</title>
+</head>
+
+<body>
+  <h1>Informasi Buku</h1>
+  <input type="text" id="secret"><br><br>
+  <input type="text" id="text-enc">
+  <button id="encrypt">gas en</button><br><br>
+
+  <input type="text" id="text-dec">
+  <button id="decrypt">gas dec</button>
+
+  <ul id="book-list"></ul>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"
+    integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    const encrypt = document.getElementById("encrypt");
+    const decrypt = document.getElementById("decrypt");
+
+    const textEnc = document.getElementById("text-enc");
+    const textDec = document.getElementById("text-dec");
+    const secret = document.getElementById("secret");
+
+    encrypt.addEventListener("click", function () {
+      // Encrypt
+      var ciphertext = CryptoJS.AES.encrypt(textEnc.value, secret.value).toString();
+
+      console.log(ciphertext);
+    });
+
+    decrypt.addEventListener("click", function () {
+      // Decrypt
+      var bytes = CryptoJS.AES.decrypt(textDec.value, secret.value);
+      var originalText = bytes.toString(CryptoJS.enc.Utf8);
+
+      console.log(originalText);
+    });
+
+
+
+  </script>
+</body>
+
+</html>
